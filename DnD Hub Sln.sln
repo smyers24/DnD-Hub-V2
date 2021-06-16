@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD.UI", "DnD Hub\DnD.UI.csproj", "{A9043A58-539C-4856-8FFE-CC90E27A5F8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnD.UI", "DnD Hub\DnD.UI.csproj", "{A9043A58-539C-4856-8FFE-CC90E27A5F8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD.Rolls", "DnD.Rolls\DnD.Rolls.csproj", "{F9BE8A6C-1E99-446B-84D9-9016C668E6D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnD.Rolls", "DnD.Rolls\DnD.Rolls.csproj", "{F9BE8A6C-1E99-446B-84D9-9016C668E6D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD.Objects", "DnD.Objects\DnD.Objects.csproj", "{488B8C62-5508-4C40-9C38-3CC7156913F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnD.Models", "DnD.Objects\DnD.Models.csproj", "{488B8C62-5508-4C40-9C38-3CC7156913F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

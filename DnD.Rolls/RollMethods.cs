@@ -8,19 +8,21 @@ namespace DnD.Objects
 {
     static class RollFunctions
     {       
-        public static int RollCalc(string qty, int dieValue, string mod)
+        public static int RollCalc(string qty, int dieValue, string modifier)
         {
-            int rollQuantity, rollQty, modValue;
-            bool validRollQty = int.TryParse(qty, out rollQty);
+            bool validRollQty = int.TryParse(qty, out int rollQty);
+            int rollQuantity = 1;
 
             if (validRollQty)
+            {
                 rollQuantity = rollQty;
-            else
-                rollQuantity = 1;
+            }
+
             int result = Roll(rollQuantity, dieValue);
+
             if (!string.IsNullOrEmpty(qty))
             {
-                int.TryParse(mod, out modValue);
+                int.TryParse(modifier, out int modValue);
                 result += modValue;
             }
             return result;
@@ -30,11 +32,12 @@ namespace DnD.Objects
         {
             Random rollSeed = new Random();
             int result = 0;
+
             for (int i = 0; i < numberOfRolls; i++)
             {
                 result += rollSeed.Next(1, dieValue + 1);
             }
-            //Console.WriteLine(result);
+            
             return result;
         }
     }

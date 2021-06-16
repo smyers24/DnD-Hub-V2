@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DnD.Objects\DnD.Objects.csproj" />
+    <ProjectReference Include="..\DnD.Objects\DnD.Models.csproj" />
     <ProjectReference Include="..\DnD.Rolls\DnD.Rolls.csproj" />
   </ItemGroup>
 

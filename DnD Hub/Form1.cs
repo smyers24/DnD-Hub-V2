@@ -24,6 +24,9 @@ namespace DnD_Hub
 
         private Character _character;
 
+        private string _profileLocation = string.Empty;
+        private string _profileName = string.Empty;
+
         public Form1()
         {
             InitializeComponent();
@@ -75,17 +78,18 @@ namespace DnD_Hub
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "json files (*.json)";
+                openFileDialog.Filter = "json files (*.json)|*.json";
                 openFileDialog.RestoreDirectory = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     //Get the path of specified file
-                    string filePath = openFileDialog.FileName;
+                    _profileLocation = openFileDialog.FileName;
 
                     //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
-
+                    // Store file name for saving use
+                    _profileName = openFileDialog.FileName;
                     using StreamReader reader = new StreamReader(fileStream);
                     profileContent = reader.ReadToEnd();
                 }
@@ -105,6 +109,17 @@ namespace DnD_Hub
             _character = characterData.Character;
 
             RefreshDataGridViews();
+            LoadCharacterData();
+        }
+
+        private void LoadCharacterData()
+        {
+            tb_Name.Text = _character.Name;
+            tb_CurrentHP.Text = _character.CurrentHP.ToString();
+            tb_MaxHP.Text = _character.MaximumHP.ToString();
+            tb_ArmorClass.Text = _character.ArmorClass.ToString();
+            tb_Initiative.Text = _character.Initiative.ToString();
+            tb_WalkingSpeed.Text = _character.WalkingSpeed.ToString();
         }
 
         private void SaveProfile(object sender, EventArgs e)
@@ -121,9 +136,19 @@ namespace DnD_Hub
             var characterSheet = JsonConvert.SerializeObject(value);
 
             Stream saveStream;
+            // If the user is loading a previously saved profile, then overwrite it
+            // Could change this behavior in the future, but this is the most common use case
+            if (!string.IsNullOrEmpty(_profileLocation))
+            {
+                saveStream = new Stream(_profileLocation);
+                File.WriteAllText(_profileName, characterSheet);
+                saveStream.Close();
+            }
+
+
             SaveFileDialog saveDialog = new SaveFileDialog
             {
-                Filter = "json file (*.json)",             
+                Filter = "json files (*.json)|*.json",             
                 FileName = $"{_character.Name} - Level {_character.Level} - {DateTime.Now}",
                 RestoreDirectory = true
             };
