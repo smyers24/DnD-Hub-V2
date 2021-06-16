@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD.UI", "DnD Hub\DnD.UI.csproj", "{A9043A58-539C-4856-8FFE-CC90E27A5F8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD.Rolls", "DnD.Rolls\DnD.Rolls.csproj", "{F9BE8A6C-1E99-446B-84D9-9016C668E6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD.Objects", "DnD.Objects\DnD.Objects.csproj", "{488B8C62-5508-4C40-9C38-3CC7156913F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9043A58-539C-4856-8FFE-CC90E27A5F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9043A58-539C-4856-8FFE-CC90E27A5F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9043A58-539C-4856-8FFE-CC90E27A5F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9043A58-539C-4856-8FFE-CC90E27A5F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9BE8A6C-1E99-446B-84D9-9016C668E6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9BE8A6C-1E99-446B-84D9-9016C668E6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9BE8A6C-1E99-446B-84D9-9016C668E6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9BE8A6C-1E99-446B-84D9-9016C668E6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488B8C62-5508-4C40-9C38-3CC7156913F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488B8C62-5508-4C40-9C38-3CC7156913F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488B8C62-5508-4C40-9C38-3CC7156913F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488B8C62-5508-4C40-9C38-3CC7156913F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BEACB66E-96F2-45D2-B761-9295D5ADD278}
+	EndGlobalSection
+EndGlobal
