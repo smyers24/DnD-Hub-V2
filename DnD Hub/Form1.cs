@@ -27,15 +27,7 @@ namespace DnD_Hub
         public Form1()
         {
             InitializeComponent();
-            //GenerateDataGridViewHeaders();
             BindDataGridViews();
-        }
-
-        private void GenerateDataGridViewHeaders()
-        {
-        //    _skills = SeedData.GenerateSkillsSeedData();
-       //     _actions = SeedData.GenerateActionsSeedData();
-      //      _savingThrows = SeedData.GenerateSavingThrowsSeedData();
         }
 
         private void BindDataGridViews()
@@ -70,6 +62,7 @@ namespace DnD_Hub
 
         private void RefreshDataGridViews()
         {
+            // This does not work
             DGV_Actions.Refresh();
             DGV_SavingThrows.Refresh();
             DGV_Skills.Refresh();
@@ -77,8 +70,34 @@ namespace DnD_Hub
 
         private void LoadProfile(object sender, EventArgs e)
         {
-            var profileJSON = File.ReadAllText("character.json");
-            var characterData = JsonConvert.DeserializeObject<CharacterSheet>(profileJSON);
+            var profileContent = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "json files (*.json)";
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    string filePath = openFileDialog.FileName;
+
+                    //Read the contents of the file into a stream
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using StreamReader reader = new StreamReader(fileStream);
+                    profileContent = reader.ReadToEnd();
+                }
+            }
+
+            if (string.IsNullOrEmpty(profileContent))
+            {
+                // come back to this
+                return;
+            }
+
+            var characterData = JsonConvert.DeserializeObject<CharacterSheet>(profileContent);
 
             _actions = characterData.Actions;
             _savingThrows = characterData.SavingThrows;
@@ -99,8 +118,24 @@ namespace DnD_Hub
                 Skills = _skills, 
                 SavingThrows = _savingThrows
             };
-            var output = JsonConvert.SerializeObject(value);
-            File.WriteAllText("character.json", output);
+            var characterSheet = JsonConvert.SerializeObject(value);
+
+            Stream saveStream;
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "json file (*.json)",             
+                FileName = $"{_character.Name} - Level {_character.Level} - {DateTime.Now}",
+                RestoreDirectory = true
+            };
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((saveStream = saveDialog.OpenFile()) != null)
+                {
+                    File.WriteAllText(saveDialog.FileName, characterSheet);
+                    saveStream.Close();
+                }
+            }           
         }
 
         private Character GenerateCharacterData()
@@ -116,6 +151,13 @@ namespace DnD_Hub
             };
 
             return character;
+        }
+
+        private void GenerateDataGridViewHeaders(object sender, EventArgs e)
+        {
+            _skills = (BindingList<Skill>)SeedData.GenerateSkillsSeedData();
+            _actions = (BindingList<DnD.Objects.Action>)SeedData.GenerateActionsSeedData();
+            _savingThrows = (BindingList<SavingThrow>)SeedData.GenerateSavingThrowsSeedData();
         }
     }
 }

@@ -42,17 +42,18 @@ namespace DnD_Hub
             this.gb_SavingThrows = new System.Windows.Forms.GroupBox();
             this.gb_Character = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_MaxHP = new System.Windows.Forms.TextBox();
+            this.tb_WalkingSpeed = new System.Windows.Forms.TextBox();
+            this.tb_Initiative = new System.Windows.Forms.TextBox();
+            this.tb_ArmorClass = new System.Windows.Forms.TextBox();
             this.tb_CurrentHP = new System.Windows.Forms.TextBox();
             this.tb_Name = new System.Windows.Forms.TextBox();
-            this.tb_ArmorClass = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_Initiative = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tb_WalkingSpeed = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btn_SeedData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SavingThrows)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Skills)).BeginInit();
@@ -217,6 +218,36 @@ namespace DnD_Hub
             this.label2.TabIndex = 7;
             this.label2.Text = "/";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 142);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 15);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Walking Speed:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 113);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 15);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Initiative:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 84);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 15);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Armor Class:";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -245,6 +276,30 @@ namespace DnD_Hub
             this.tb_MaxHP.Size = new System.Drawing.Size(64, 23);
             this.tb_MaxHP.TabIndex = 0;
             // 
+            // tb_WalkingSpeed
+            // 
+            this.tb_WalkingSpeed.Location = new System.Drawing.Point(104, 139);
+            this.tb_WalkingSpeed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tb_WalkingSpeed.Name = "tb_WalkingSpeed";
+            this.tb_WalkingSpeed.Size = new System.Drawing.Size(66, 23);
+            this.tb_WalkingSpeed.TabIndex = 0;
+            // 
+            // tb_Initiative
+            // 
+            this.tb_Initiative.Location = new System.Drawing.Point(90, 110);
+            this.tb_Initiative.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tb_Initiative.Name = "tb_Initiative";
+            this.tb_Initiative.Size = new System.Drawing.Size(66, 23);
+            this.tb_Initiative.TabIndex = 0;
+            // 
+            // tb_ArmorClass
+            // 
+            this.tb_ArmorClass.Location = new System.Drawing.Point(90, 81);
+            this.tb_ArmorClass.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tb_ArmorClass.Name = "tb_ArmorClass";
+            this.tb_ArmorClass.Size = new System.Drawing.Size(66, 23);
+            this.tb_ArmorClass.TabIndex = 0;
+            // 
             // tb_CurrentHP
             // 
             this.tb_CurrentHP.Location = new System.Drawing.Point(54, 52);
@@ -262,59 +317,16 @@ namespace DnD_Hub
             this.tb_Name.Size = new System.Drawing.Size(172, 23);
             this.tb_Name.TabIndex = 0;
             // 
-            // tb_ArmorClass
+            // btn_SeedData
             // 
-            this.tb_ArmorClass.Location = new System.Drawing.Point(90, 81);
-            this.tb_ArmorClass.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tb_ArmorClass.Name = "tb_ArmorClass";
-            this.tb_ArmorClass.Size = new System.Drawing.Size(66, 23);
-            this.tb_ArmorClass.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 84);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Armor Class:";
-            // 
-            // tb_Initiative
-            // 
-            this.tb_Initiative.Location = new System.Drawing.Point(90, 110);
-            this.tb_Initiative.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tb_Initiative.Name = "tb_Initiative";
-            this.tb_Initiative.Size = new System.Drawing.Size(66, 23);
-            this.tb_Initiative.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 113);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 15);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Initiative:";
-            // 
-            // tb_WalkingSpeed
-            // 
-            this.tb_WalkingSpeed.Location = new System.Drawing.Point(104, 139);
-            this.tb_WalkingSpeed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tb_WalkingSpeed.Name = "tb_WalkingSpeed";
-            this.tb_WalkingSpeed.Size = new System.Drawing.Size(66, 23);
-            this.tb_WalkingSpeed.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 142);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 15);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Walking Speed:";
+            this.btn_SeedData.Location = new System.Drawing.Point(12, 107);
+            this.btn_SeedData.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_SeedData.Name = "btn_SeedData";
+            this.btn_SeedData.Size = new System.Drawing.Size(102, 41);
+            this.btn_SeedData.TabIndex = 2;
+            this.btn_SeedData.Text = "Generate Seed Data";
+            this.btn_SeedData.UseVisualStyleBackColor = true;
+            this.btn_SeedData.Click += new System.EventHandler(this.GenerateDataGridViewHeaders);
             // 
             // Form1
             // 
@@ -326,6 +338,7 @@ namespace DnD_Hub
             this.Controls.Add(this.gb_Actions);
             this.Controls.Add(this.gb_Skills);
             this.Controls.Add(this.btn_SaveProfile);
+            this.Controls.Add(this.btn_SeedData);
             this.Controls.Add(this.btn_LoadProfile);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -369,6 +382,7 @@ namespace DnD_Hub
         private System.Windows.Forms.TextBox tb_WalkingSpeed;
         private System.Windows.Forms.TextBox tb_Initiative;
         private System.Windows.Forms.TextBox tb_ArmorClass;
+        private System.Windows.Forms.Button btn_SeedData;
     }
 }
 
