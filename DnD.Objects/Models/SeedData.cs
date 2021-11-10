@@ -6,7 +6,7 @@ namespace DnD.Objects
 {
     public static class SeedData
     {
-        public static IEnumerable<Skill> GenerateSkillsSeedData()
+        public static IList<Skill> GenerateSkillsSeedData()
         {
             var skillsList = new List<Skill>
             {
@@ -159,7 +159,7 @@ namespace DnD.Objects
             return skillsList;
         }
 
-        public static IEnumerable<SavingThrow> GenerateSavingThrowsSeedData()
+        public static IList<SavingThrow> GenerateSavingThrowsSeedData()
         {
             var savingThrowsList = new List<SavingThrow>
             {
@@ -215,7 +215,7 @@ namespace DnD.Objects
 
             return savingThrowsList;
         }
-        public static IEnumerable<Action> GenerateActionsSeedData()
+        public static IList<Action> GenerateActionsSeedData()
         {
             var actionsList = new List<Action>
             {

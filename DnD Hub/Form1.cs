@@ -63,6 +63,13 @@ namespace DnD_Hub
             DGV_SavingThrows.DataSource = bs_SavingThrows;
         }
 
+        private void ApplyDataGridViewBindings()
+        {
+            DGV_Skills.DataSource = _skills;
+            DGV_Actions.DataSource = _actions;
+            DGV_SavingThrows.DataSource = _savingThrows;
+        }
+
         private void RefreshDataGridViews()
         {
             // This does not work
@@ -92,6 +99,7 @@ namespace DnD_Hub
                     _profileName = openFileDialog.FileName;
                     using StreamReader reader = new StreamReader(fileStream);
                     profileContent = reader.ReadToEnd();
+                    reader.Close();
                 }
             }
 
@@ -110,6 +118,7 @@ namespace DnD_Hub
 
             RefreshDataGridViews();
             LoadCharacterData();
+            ApplyDataGridViewBindings();
         }
 
         private void LoadCharacterData()
@@ -140,9 +149,7 @@ namespace DnD_Hub
             // Could change this behavior in the future, but this is the most common use case
             if (!string.IsNullOrEmpty(_profileLocation))
             {
-                saveStream = new Stream(_profileLocation);
                 File.WriteAllText(_profileName, characterSheet);
-                saveStream.Close();
             }
 
 
@@ -157,8 +164,19 @@ namespace DnD_Hub
             {
                 if ((saveStream = saveDialog.OpenFile()) != null)
                 {
-                    File.WriteAllText(saveDialog.FileName, characterSheet);
-                    saveStream.Close();
+                    try
+                    {
+                        using var stream = File.Open(Path.GetTempFileName(), FileMode.Open, FileAccess.Write, FileShare.Read);//File.Open(saveDialog.FileName, FileMode.Open, FileAccess.Write, FileShare.Read);
+                        stream.Write(Encoding.Unicode.GetBytes(characterSheet));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "File Saving Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        saveStream.Close();
+                    }
                 }
             }           
         }
@@ -167,22 +185,44 @@ namespace DnD_Hub
         {
             var character = new Character
             {
-                Name = tb_Name.Text,
-                CurrentHP = int.Parse(tb_CurrentHP.Text),
-                MaximumHP = int.Parse(tb_MaxHP.Text),
-                ArmorClass = int.Parse(tb_ArmorClass.Text),
-                WalkingSpeed = int.Parse(tb_WalkingSpeed.Text),
-                Initiative = int.Parse(tb_Initiative.Text)
+                Name = tb_Name.Text
             };
+
+            if (int.TryParse(tb_CurrentHP.Text, out int currentHp))
+            {
+                character.CurrentHP = currentHp;
+            }
+            if (int.TryParse(tb_MaxHP.Text, out int maxHp))
+            {
+                character.MaximumHP = maxHp;
+            }
+            if (int.TryParse(tb_ArmorClass.Text, out int armorClass))
+            {
+                character.ArmorClass = armorClass;
+            }
+            if (int.TryParse(tb_WalkingSpeed.Text, out int walkingSpeed))
+            {
+                character.WalkingSpeed = walkingSpeed;
+            }
+            if (int.TryParse(tb_Initiative.Text, out int initiative))
+            {
+                character.Initiative = initiative;
+            }
 
             return character;
         }
 
         private void GenerateDataGridViewHeaders(object sender, EventArgs e)
         {
-            _skills = (BindingList<Skill>)SeedData.GenerateSkillsSeedData();
-            _actions = (BindingList<DnD.Objects.Action>)SeedData.GenerateActionsSeedData();
-            _savingThrows = (BindingList<SavingThrow>)SeedData.GenerateSavingThrowsSeedData();
+            _skills = new BindingList<Skill>(SeedData.GenerateSkillsSeedData());
+            _actions = new BindingList<DnD.Objects.Action>(SeedData.GenerateActionsSeedData());
+            _savingThrows = new BindingList<SavingThrow>(SeedData.GenerateSavingThrowsSeedData());
+            ApplyDataGridViewBindings();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
