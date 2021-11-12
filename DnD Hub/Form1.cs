@@ -9,8 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DnD.Objects;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using DnD.Rolls;
 
 namespace DnD_Hub
 {
@@ -109,7 +111,7 @@ namespace DnD_Hub
                 return;
             }
 
-            var characterData = JsonConvert.DeserializeObject<CharacterSheet>(profileContent);
+            var characterData = JsonSerializer.Deserialize<CharacterSheet>(profileContent);//JsonConvert.DeserializeObject<CharacterSheet>(profileContent);
 
             _actions = characterData.Actions;
             _savingThrows = characterData.SavingThrows;
@@ -124,6 +126,7 @@ namespace DnD_Hub
         private void LoadCharacterData()
         {
             tb_Name.Text = _character.Name;
+            tb_Level.Text = _character.Level.ToString();
             tb_CurrentHP.Text = _character.CurrentHP.ToString();
             tb_MaxHP.Text = _character.MaximumHP.ToString();
             tb_ArmorClass.Text = _character.ArmorClass.ToString();
@@ -142,42 +145,44 @@ namespace DnD_Hub
                 Skills = _skills, 
                 SavingThrows = _savingThrows
             };
-            var characterSheet = JsonConvert.SerializeObject(value);
-
-            Stream saveStream;
+            //   var characterSheet = JsonConvert.SerializeObject(value);
+            string json = JsonSerializer.Serialize(value);
             // If the user is loading a previously saved profile, then overwrite it
             // Could change this behavior in the future, but this is the most common use case
             if (!string.IsNullOrEmpty(_profileLocation))
             {
-                File.WriteAllText(_profileName, characterSheet);
+                File.WriteAllText(_profileName, json);
             }
-
 
             SaveFileDialog saveDialog = new SaveFileDialog
             {
                 Filter = "json files (*.json)|*.json",             
-                FileName = $"{_character.Name} - Level {_character.Level} - {DateTime.Now}",
+                FileName = $"{_character.Name} - Level {_character.Level}",
                 RestoreDirectory = true
             };
 
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
-                if ((saveStream = saveDialog.OpenFile()) != null)
+                if (File.Exists(saveDialog.FileName))
                 {
-                    try
-                    {
-                        using var stream = File.Open(Path.GetTempFileName(), FileMode.Open, FileAccess.Write, FileShare.Read);//File.Open(saveDialog.FileName, FileMode.Open, FileAccess.Write, FileShare.Read);
-                        stream.Write(Encoding.Unicode.GetBytes(characterSheet));
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "File Saving Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        saveStream.Close();
-                    }
+                    File.Delete(saveDialog.FileName);
                 }
+
+                // if ((saveStream = saveDialog.OpenFile()) != null)
+                // {
+                try
+                {
+                    // using FileStream createStream = File.Create(saveDialog.FileName);
+                    
+                    File.WriteAllText(saveDialog.FileName, json);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "File Saving Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+    
+               // }
             }           
         }
 
@@ -188,6 +193,10 @@ namespace DnD_Hub
                 Name = tb_Name.Text
             };
 
+            if (int.TryParse(tb_Level.Text, out int level))
+            {
+                character.Level = level;
+            }
             if (int.TryParse(tb_CurrentHP.Text, out int currentHp))
             {
                 character.CurrentHP = currentHp;
@@ -223,6 +232,27 @@ namespace DnD_Hub
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DGV_Actions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedRow = e.RowIndex;
+            var row = DGV_Actions.Rows[selectedRow];
+            int.TryParse(row.ToString(), out var modifier);
+            var rollResult = RollFunctions.Roll(1, 20);
+           // RollRegex.ParseRoll;
+           // var total = modifier + rollResult;
+
+          //  lbl_FinalRoll.Text = total.ToString();
+        }
+
+        private void ManualRoll(object sender, EventArgs e)
+        {
+            var parsedRoll = tb_manualRollString.Text.ParseAsRoll();
+            var rollResults = RollFunctions.GetRollResults(parsedRoll);
+            lbl_individualRolls.Text = String.Join(", ", rollResults.IndividualRolls);
+
+            lbl_rollResult.Text = rollResults.Total.ToString();
         }
     }
 }
