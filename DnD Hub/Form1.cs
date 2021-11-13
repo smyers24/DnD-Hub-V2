@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DnD.Objects;
-//using Newtonsoft.Json;
-//using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using DnD.Rolls;
+using Smyers.Extensions;
+using DnD.Models.Models;
 
 namespace DnD_Hub
 {
@@ -28,6 +22,9 @@ namespace DnD_Hub
 
         private string _profileLocation = string.Empty;
         private string _profileName = string.Empty;
+
+        private int _actionDgvRollCellIndex = 1;
+        private int _savingThrowsDvgRollCellIndex = 1;
 
         public Form1()
         {
@@ -141,8 +138,8 @@ namespace DnD_Hub
             var value = new CharacterSheet
             {
                 Character = _character,
-                Actions = _actions, 
-                Skills = _skills, 
+                Actions = _actions,
+                Skills = _skills,
                 SavingThrows = _savingThrows
             };
             //   var characterSheet = JsonConvert.SerializeObject(value);
@@ -156,7 +153,7 @@ namespace DnD_Hub
 
             SaveFileDialog saveDialog = new SaveFileDialog
             {
-                Filter = "json files (*.json)|*.json",             
+                Filter = "json files (*.json)|*.json",
                 FileName = $"{_character.Name} - Level {_character.Level}",
                 RestoreDirectory = true
             };
@@ -173,7 +170,7 @@ namespace DnD_Hub
                 try
                 {
                     // using FileStream createStream = File.Create(saveDialog.FileName);
-                    
+
                     File.WriteAllText(saveDialog.FileName, json);
                 }
 
@@ -181,9 +178,9 @@ namespace DnD_Hub
                 {
                     MessageBox.Show(ex.Message, "File Saving Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-    
-               // }
-            }           
+
+                // }
+            }
         }
 
         private Character GenerateCharacterData()
@@ -236,23 +233,30 @@ namespace DnD_Hub
 
         private void DGV_Actions_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selectedRow = e.RowIndex;
-            var row = DGV_Actions.Rows[selectedRow];
-            int.TryParse(row.ToString(), out var modifier);
-            var rollResult = RollFunctions.Roll(1, 20);
-           // RollRegex.ParseRoll;
-           // var total = modifier + rollResult;
-
-          //  lbl_FinalRoll.Text = total.ToString();
+            ProcessDgvRowForRoll(DGV_Actions.Rows[e.RowIndex], _actionDgvRollCellIndex);
         }
 
         private void ManualRoll(object sender, EventArgs e)
         {
-            var parsedRoll = tb_manualRollString.Text.ParseAsRoll();
-            var rollResults = RollFunctions.GetRollResults(parsedRoll);
-            lbl_individualRolls.Text = String.Join(", ", rollResults.IndividualRolls);
+            var rollResults = ParseRoll.GetRollResultsFromString(tb_manualRollString.Text);
+            UpdateRollResultsOnUI(rollResults);
+        }
 
+        private void UpdateRollResultsOnUI(RollResults rollResults)
+        {
+            lbl_individualRolls.Text = rollResults.IndividualRolls.CommaDelimitAndSpace();
             lbl_rollResult.Text = rollResults.Total.ToString();
+        }
+
+        private void ProcessDgvRowForRoll(DataGridViewRow row, int columnIndex)
+        {
+            var rollResults = ParseRoll.GetRollResultsFromString(row.Cells[columnIndex].Value.ToString());
+            UpdateRollResultsOnUI(rollResults);
+        }
+
+        private void DGV_SavingThrows_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ProcessDgvRowForRoll(DGV_SavingThrows.Rows[e.RowIndex], _savingThrowsDvgRollCellIndex);
         }
     }
 }
