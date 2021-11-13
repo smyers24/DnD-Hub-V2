@@ -42,6 +42,13 @@ namespace DnD.Rolls
             return rollInfo;
         }
 
+
+        public static RollResults GetRollResultsFromString(string inputRoll)
+        {
+            var parsedRoll = inputRoll.ParseAsRoll();
+            return RollFunctions.GetRollResults(parsedRoll);
+        }
+
         private static (bool, string) CheckForSign(string roll)
         {
             if (roll.Contains('-'))
@@ -57,6 +64,4 @@ namespace DnD.Rolls
             return (true, roll);
         }
     }
-
-
 }
