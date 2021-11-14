@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DnD.Objects
 {
-    public enum ModifierType
+    public enum AbilityType
     {
         Strength,
         Dexterity,
