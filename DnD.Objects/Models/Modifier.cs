@@ -8,30 +8,30 @@ namespace DnD.Objects
 {
     public class Modifier
     {
-        public ModifierType ModifierType { get; set; }
+        public AbilityType AbilityType { get; set; }
 
         public int Value { get; set; }
 
-        public string GetModifierCode(ModifierType type)
+        public string GetModifierCode(AbilityType type)
         {
             switch (type)
             {
-                case ModifierType.Charisma:
+                case AbilityType.Charisma:
                     return "CHA";
 
-                case ModifierType.Constitution:
+                case AbilityType.Constitution:
                     return "CON";
 
-                case ModifierType.Dexterity:
+                case AbilityType.Dexterity:
                     return "DEX";
 
-                case ModifierType.Intelligence:
+                case AbilityType.Intelligence:
                     return "INT";
 
-                case ModifierType.Strength:
+                case AbilityType.Strength:
                     return "STR";
 
-                case ModifierType.Wisdom:
+                case AbilityType.Wisdom:
                     return "WIS";
 
                 default:
@@ -43,7 +43,7 @@ namespace DnD.Objects
 
         public override string ToString()
         {
-            return ModifierType.ToString();
+            return AbilityType.ToString();
         }
     }
 }

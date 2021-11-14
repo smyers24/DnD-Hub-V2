@@ -15,7 +15,7 @@ namespace DnD.Objects
                     Name = "Acrobatics",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Dexterity
+                        AbilityType = AbilityType.Dexterity
                     }
                 },
                 new Skill()
@@ -23,7 +23,7 @@ namespace DnD.Objects
                     Name = "Animal Handling",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Wisdom
+                        AbilityType = AbilityType.Wisdom
                     }
                 },
                 new Skill()
@@ -31,7 +31,7 @@ namespace DnD.Objects
                     Name = "Arcana",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Intelligence
+                        AbilityType = AbilityType.Intelligence
                     }
                 },
                 new Skill()
@@ -39,7 +39,7 @@ namespace DnD.Objects
                     Name = "Athletics",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Strength
+                        AbilityType = AbilityType.Strength
                     }
                 },
                 new Skill()
@@ -47,7 +47,7 @@ namespace DnD.Objects
                     Name = "Deception",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Charisma
+                        AbilityType = AbilityType.Charisma
                     }
                 },
                 new Skill()
@@ -55,7 +55,7 @@ namespace DnD.Objects
                     Name = "History",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Intelligence
+                        AbilityType = AbilityType.Intelligence
                     }
                 },
                 new Skill()
@@ -63,7 +63,7 @@ namespace DnD.Objects
                     Name = "Insight",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Wisdom
+                        AbilityType = AbilityType.Wisdom
                     }
                 },
                 new Skill()
@@ -71,7 +71,7 @@ namespace DnD.Objects
                     Name = "Intimidation",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Charisma
+                        AbilityType = AbilityType.Charisma
                     }
                 },
                 new Skill()
@@ -79,7 +79,7 @@ namespace DnD.Objects
                     Name = "Investigation",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Intelligence
+                        AbilityType = AbilityType.Intelligence
                     }
                 },
                 new Skill()
@@ -87,7 +87,7 @@ namespace DnD.Objects
                     Name = "Medicine",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Wisdom
+                        AbilityType = AbilityType.Wisdom
                     }
                 },
                 new Skill()
@@ -95,7 +95,7 @@ namespace DnD.Objects
                     Name = "Nature",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Intelligence
+                        AbilityType = AbilityType.Intelligence
                     }
                 },
                 new Skill()
@@ -103,7 +103,7 @@ namespace DnD.Objects
                     Name = "Perception",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Wisdom
+                        AbilityType = AbilityType.Wisdom
                     }
                 },
                 new Skill()
@@ -111,7 +111,7 @@ namespace DnD.Objects
                     Name = "Performance",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Charisma
+                        AbilityType = AbilityType.Charisma
                     }
                 },
                 new Skill()
@@ -119,7 +119,7 @@ namespace DnD.Objects
                     Name = "Persuasion",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Charisma
+                        AbilityType = AbilityType.Charisma
                     }
                 },
                 new Skill()
@@ -127,7 +127,7 @@ namespace DnD.Objects
                     Name = "Religion",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Intelligence
+                        AbilityType = AbilityType.Intelligence
                     }
                 },
                 new Skill()
@@ -135,7 +135,7 @@ namespace DnD.Objects
                     Name = "Sleight of Hand",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Dexterity
+                        AbilityType = AbilityType.Dexterity
                     }
                 },
                 new Skill()
@@ -143,7 +143,7 @@ namespace DnD.Objects
                     Name = "Stealth",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Dexterity
+                        AbilityType = AbilityType.Dexterity
                     }
                 },
                 new Skill()
@@ -151,7 +151,7 @@ namespace DnD.Objects
                     Name = "Survival",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Wisdom
+                        AbilityType = AbilityType.Wisdom
                     }
                 }
             };
@@ -168,7 +168,8 @@ namespace DnD.Objects
                     Name = "Strength",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Strength
+                        AbilityType = AbilityType.Strength,
+                        Value = 0
                     }
                 },
                 new SavingThrow()
@@ -176,7 +177,8 @@ namespace DnD.Objects
                     Name = "Dexterity",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Dexterity
+                        AbilityType = AbilityType.Dexterity,
+                        Value = 0
                     }
                 },
                 new SavingThrow()
@@ -184,7 +186,8 @@ namespace DnD.Objects
                     Name = "Constitution",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Constitution
+                        AbilityType = AbilityType.Constitution,
+                        Value = 0
                     }
                 },
                 new SavingThrow()
@@ -192,7 +195,8 @@ namespace DnD.Objects
                     Name = "Intelligence",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Intelligence
+                        AbilityType = AbilityType.Intelligence,
+                        Value = 0
                     }
                 },
                 new SavingThrow()
@@ -200,7 +204,8 @@ namespace DnD.Objects
                     Name = "Wisdom",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Wisdom
+                        AbilityType = AbilityType.Wisdom,
+                        Value = 0
                     }
                 },
                 new SavingThrow()
@@ -208,7 +213,8 @@ namespace DnD.Objects
                     Name = "Charisma",
                     Modifier = new Modifier
                     {
-                        ModifierType = ModifierType.Charisma
+                        AbilityType = AbilityType.Charisma,
+                        Value = 0
                     }
                 },
             };
@@ -228,6 +234,24 @@ namespace DnD.Objects
             };
 
             return actionsList;
+        }
+
+        public static IList<Ability> GenerateAbilitiesSeedData()
+        {
+            var abilitiesList = new List<Ability>();
+
+            foreach (var type in Enum.GetValues(typeof(AbilityType)))
+            {
+                abilitiesList.Add(new Ability
+                {
+                    Name = type.ToString(),
+                    AbilityType = (AbilityType)type,
+                    Modifier = 0,
+                    Value = 12
+                });
+            }
+
+            return abilitiesList;
         }
     }
 }

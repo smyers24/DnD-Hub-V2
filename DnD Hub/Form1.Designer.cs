@@ -67,6 +67,7 @@ namespace DnD_Hub
             this.lbl_individualRolls = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.DGV_Abilities = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SavingThrows)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Skills)).BeginInit();
@@ -75,6 +76,8 @@ namespace DnD_Hub
             this.gb_Actions.SuspendLayout();
             this.gb_SavingThrows.SuspendLayout();
             this.gb_Character.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Abilities)).BeginInit();
             this.SuspendLayout();
             // 
             // DGV_SavingThrows
@@ -468,18 +471,31 @@ namespace DnD_Hub
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.DGV_Abilities);
             this.groupBox2.Location = new System.Drawing.Point(609, 603);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(609, 124);
+            this.groupBox2.Size = new System.Drawing.Size(806, 241);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Abilities";
+            // 
+            // DGV_Abilities
+            // 
+            this.DGV_Abilities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_Abilities.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.DGV_Abilities.Location = new System.Drawing.Point(14, 22);
+            this.DGV_Abilities.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DGV_Abilities.Name = "DGV_Abilities";
+            this.DGV_Abilities.RowTemplate.Height = 25;
+            this.DGV_Abilities.Size = new System.Drawing.Size(785, 197);
+            this.DGV_Abilities.TabIndex = 0;
+            this.DGV_Abilities.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Abilities_CellContentClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1239, 739);
+            this.ClientSize = new System.Drawing.Size(1493, 1044);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lbl_rollResult);
             this.Controls.Add(this.cb_saveManualRoll);
@@ -511,6 +527,8 @@ namespace DnD_Hub
             this.gb_SavingThrows.ResumeLayout(false);
             this.gb_Character.ResumeLayout(false);
             this.gb_Character.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Abilities)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -555,6 +573,7 @@ namespace DnD_Hub
         private System.Windows.Forms.Label lbl_individualRolls;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView DGV_Abilities;
     }
 }
 
