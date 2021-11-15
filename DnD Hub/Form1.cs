@@ -226,11 +226,6 @@ namespace DnD_Hub
             ApplyDataGridViewBindings();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void DGV_Actions_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ProcessDgvRowForRoll(DGV_Actions.Rows[e.RowIndex], _actionDgvRollCellIndex);
@@ -257,6 +252,43 @@ namespace DnD_Hub
         private void DGV_SavingThrows_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ProcessDgvRowForRoll(DGV_SavingThrows.Rows[e.RowIndex], _savingThrowsDvgRollCellIndex);
+        }
+
+        private void DGV_Abilities_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ProcessDvgValueForD20Roll(DGV_Abilities.Rows[e.RowIndex], _abilitiesDvgRollCellIndex);
+        }
+
+        private void ProcessDvgValueForD20Roll(DataGridViewRow row, int columnIndex)
+        {
+            var rollString = $"1d20{ProcessRollValue(row.Cells[columnIndex].Value.ToString())}";
+            var rollResults = ParseRoll.GetRollResultsFromString(rollString);
+            UpdateRollResultsOnUI(rollResults);
+        }
+
+        private string ProcessRollValue(string rollValue)
+        {
+            var isParseable = int.TryParse(rollValue, out var value);
+            if (isParseable)
+            {
+                if (value == 0)
+                {
+                    return string.Empty;
+                }
+                return value > 0 ? $"+{value}" : $"-{value}";
+            }
+
+            return string.Empty;
+        }
+
+        private void btn_OpenListOfThings_Click(object sender, EventArgs e)
+        {
+            lb_Links.Items.Clear();
+            string[] files = FileIO.openListOfThings();
+            foreach (string file in files)
+            {
+                openedItemsListBox.Items.Add(file);
+            }
         }
     }
 }

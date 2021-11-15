@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smyers.Extensions", "Smyers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD.Tests", "DnD.Tests\DnD.Tests.csproj", "{01314EB7-66F2-450C-B6B8-F3658B3A26C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smyers.Files", "Smyers.Files\Smyers.Files.csproj", "{1DB1B3E0-0317-466C-AC57-C3CBC2DE1DAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{01314EB7-66F2-450C-B6B8-F3658B3A26C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01314EB7-66F2-450C-B6B8-F3658B3A26C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01314EB7-66F2-450C-B6B8-F3658B3A26C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB1B3E0-0317-466C-AC57-C3CBC2DE1DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB1B3E0-0317-466C-AC57-C3CBC2DE1DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB1B3E0-0317-466C-AC57-C3CBC2DE1DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB1B3E0-0317-466C-AC57-C3CBC2DE1DAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
