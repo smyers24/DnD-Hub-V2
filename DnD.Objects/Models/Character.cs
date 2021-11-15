@@ -24,6 +24,8 @@ namespace DnD.Objects
 
         public IEnumerable<Action> Actions { get; set; }
 
+        public IEnumerable<Ability> Abilities { get; set; }
+
         public int PassivePerception { get; set; }
 
         public int WalkingSpeed { get; set; }

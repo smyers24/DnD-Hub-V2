@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DnD.Objects
 {
-    public class Action
+    public class Ability
     {
         public string Name { get; set; }
     
-        public string RollString { get; set; }
+        public AbilityType AbilityType { get; set; }
 
-        public string Description { get; set; }
+        public int Value { get;set; }   
 
-        public int Damage { get; set; }
+        public int Modifier { get; set; }
     }
 }

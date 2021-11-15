@@ -12,11 +12,13 @@ namespace DnD_Hub
 {
     public partial class Form1 : Form
     {
-        private BindingList<SavingThrow> _savingThrows = new BindingList<SavingThrow>();
+        private BindingList<SavingThrow> _savingThrows = new();
 
-        private BindingList<Skill> _skills = new BindingList<Skill>();
+        private BindingList<Skill> _skills = new();
 
-        private BindingList<DnD.Objects.Action> _actions = new BindingList<DnD.Objects.Action>();
+        private BindingList<DnD.Objects.Action> _actions = new();
+
+        private BindingList<Ability> _abilities = new();
 
         private Character _character;
 
@@ -25,6 +27,8 @@ namespace DnD_Hub
 
         private int _actionDgvRollCellIndex = 1;
         private int _savingThrowsDvgRollCellIndex = 1;
+
+        private int _abilitiesDvgRollCellIndex = 3;
 
         private Smyers.Files.ReadFiles _fileReader = new();
 
@@ -38,7 +42,7 @@ namespace DnD_Hub
         {
             // Skills
             DGV_Skills.AutoGenerateColumns = true;
-            BindingSource bs_Skills = new BindingSource
+            BindingSource bs_Skills = new()
             {
                 DataSource = _skills
             };
@@ -47,7 +51,7 @@ namespace DnD_Hub
 
             // Actions
             DGV_Actions.AutoGenerateColumns = true;
-            BindingSource bs_Actions = new BindingSource
+            BindingSource bs_Actions = new()
             {
                 DataSource = _actions
             };
@@ -56,12 +60,19 @@ namespace DnD_Hub
 
             // Saving throws
             DGV_SavingThrows.AutoGenerateColumns = true;
-            BindingSource bs_SavingThrows = new BindingSource
+            BindingSource bs_SavingThrows = new()
             {
                 DataSource = _savingThrows
             };
 
             DGV_SavingThrows.DataSource = bs_SavingThrows;
+
+            DGV_Abilities.AutoGenerateColumns = true;
+            BindingSource bs_Abilities = new()
+            {
+                DataSource = _abilities
+            };
+            DGV_Abilities.DataSource = bs_Abilities;
         }
 
         private void ApplyDataGridViewBindings()
@@ -69,11 +80,19 @@ namespace DnD_Hub
             DGV_Skills.DataSource = _skills;
             DGV_Actions.DataSource = _actions;
             DGV_SavingThrows.DataSource = _savingThrows;
+            DGV_Abilities.DataSource= _abilities;
+
+            PostBindingProcessing();
+        }
+
+        private void PostBindingProcessing()
+        {
+            DGV_Abilities.Columns[nameof(Ability.AbilityType)].Visible = false;
         }
 
         private void RefreshDataGridViews()
         {
-            // This does not work
+            // This does not work - I think
             DGV_Actions.Refresh();
             DGV_SavingThrows.Refresh();
             DGV_Skills.Refresh();
@@ -116,6 +135,7 @@ namespace DnD_Hub
             _savingThrows = characterData.SavingThrows;
             _skills = characterData.Skills;
             _character = characterData.Character;
+            _abilities = characterData.Abilities;
 
             RefreshDataGridViews();
             LoadCharacterData();
@@ -142,7 +162,8 @@ namespace DnD_Hub
                 Character = _character,
                 Actions = _actions,
                 Skills = _skills,
-                SavingThrows = _savingThrows
+                SavingThrows = _savingThrows,
+                Abilities = _abilities
             };
             //   var characterSheet = JsonConvert.SerializeObject(value);
             string json = JsonSerializer.Serialize(value);
@@ -167,12 +188,8 @@ namespace DnD_Hub
                     File.Delete(saveDialog.FileName);
                 }
 
-                // if ((saveStream = saveDialog.OpenFile()) != null)
-                // {
                 try
                 {
-                    // using FileStream createStream = File.Create(saveDialog.FileName);
-
                     File.WriteAllText(saveDialog.FileName, json);
                 }
 
@@ -180,8 +197,6 @@ namespace DnD_Hub
                 {
                     MessageBox.Show(ex.Message, "File Saving Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                // }
             }
         }
 
@@ -225,6 +240,7 @@ namespace DnD_Hub
             _skills = new BindingList<Skill>(SeedData.GenerateSkillsSeedData());
             _actions = new BindingList<DnD.Objects.Action>(SeedData.GenerateActionsSeedData());
             _savingThrows = new BindingList<SavingThrow>(SeedData.GenerateSavingThrowsSeedData());
+            _abilities = new BindingList<Ability>(SeedData.GenerateAbilitiesSeedData());
             ApplyDataGridViewBindings();
         }
 

@@ -12,5 +12,7 @@ namespace DnD.Objects
         public BindingList<Skill> Skills { get; set; }
         
         public BindingList<SavingThrow> SavingThrows { get; set; }
+
+        public BindingList<Ability> Abilities { get; set; }
     }
 }
