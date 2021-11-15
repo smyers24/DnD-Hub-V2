@@ -26,6 +26,8 @@ namespace DnD_Hub
         private int _actionDgvRollCellIndex = 1;
         private int _savingThrowsDvgRollCellIndex = 1;
 
+        private Smyers.Files.ReadFiles _fileReader = new();
+
         public Form1()
         {
             InitializeComponent();
@@ -284,10 +286,10 @@ namespace DnD_Hub
         private void btn_OpenListOfThings_Click(object sender, EventArgs e)
         {
             lb_Links.Items.Clear();
-            string[] files = FileIO.openListOfThings();
+            string[] files = _fileReader.OpenListOfThings();
             foreach (string file in files)
             {
-                openedItemsListBox.Items.Add(file);
+                lb_Links.Items.Add(file);
             }
         }
     }
