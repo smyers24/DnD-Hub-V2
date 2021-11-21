@@ -30,6 +30,8 @@ namespace DnD_Hub
 
         private int _abilitiesDvgRollCellIndex = 3;
 
+        private Smyers.Files.ReadFiles _fileReader = new();
+
         public Form1()
         {
             InitializeComponent();
@@ -242,11 +244,6 @@ namespace DnD_Hub
             ApplyDataGridViewBindings();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void DGV_Actions_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ProcessDgvRowForRoll(DGV_Actions.Rows[e.RowIndex], _actionDgvRollCellIndex);
@@ -300,6 +297,33 @@ namespace DnD_Hub
             }
 
             return string.Empty;
+        }
+
+        private void btn_OpenListOfThings_Click(object sender, EventArgs e)
+        {
+            string[] openedLinks = Array.Empty<string>();
+
+            using (OpenFileDialog openFileDialog = new())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "text files (*.txt)|*.txt";
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    openedLinks = _fileReader.OpenListOfThings(openFileDialog.FileName);
+                }
+            }
+
+            if (openedLinks.Length > 0)
+            {
+                lb_Links.Items.Clear();
+                foreach (string file in openedLinks)
+                {
+                    lb_Links.Items.Add(file);
+                }
+            }
+
         }
     }
 }

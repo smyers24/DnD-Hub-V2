@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DnD.Objects\DnD.Models.csproj" />
     <ProjectReference Include="..\DnD.Rolls\DnD.Rolls.csproj" />
+    <ProjectReference Include="..\Smyers.Files\Smyers.Files.csproj" />
   </ItemGroup>
 
 </Project>

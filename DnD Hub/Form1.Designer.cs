@@ -31,8 +31,8 @@ namespace DnD_Hub
         {
             this.DGV_SavingThrows = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lb_Links = new System.Windows.Forms.ListBox();
+            this.btn_OpenListOfThings = new System.Windows.Forms.Button();
             this.DGV_Skills = new System.Windows.Forms.DataGridView();
             this.DGV_Actions = new System.Windows.Forms.DataGridView();
             this.btn_LoadProfile = new System.Windows.Forms.Button();
@@ -94,8 +94,8 @@ namespace DnD_Hub
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.listBox1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.lb_Links);
+            this.groupBox1.Controls.Add(this.btn_OpenListOfThings);
             this.groupBox1.Location = new System.Drawing.Point(379, 20);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
@@ -105,26 +105,26 @@ namespace DnD_Hub
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // listBox1
+            // lb_Links
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(18, 61);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(179, 49);
-            this.listBox1.TabIndex = 1;
+            this.lb_Links.FormattingEnabled = true;
+            this.lb_Links.ItemHeight = 15;
+            this.lb_Links.Location = new System.Drawing.Point(18, 61);
+            this.lb_Links.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.lb_Links.Name = "lb_Links";
+            this.lb_Links.Size = new System.Drawing.Size(179, 49);
+            this.lb_Links.TabIndex = 1;
             // 
-            // button1
+            // btn_OpenListOfThings
             // 
-            this.button1.Location = new System.Drawing.Point(42, 22);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Open List of Things";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_OpenListOfThings.Location = new System.Drawing.Point(42, 22);
+            this.btn_OpenListOfThings.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_OpenListOfThings.Name = "btn_OpenListOfThings";
+            this.btn_OpenListOfThings.Size = new System.Drawing.Size(122, 23);
+            this.btn_OpenListOfThings.TabIndex = 0;
+            this.btn_OpenListOfThings.Text = "Open List of Things";
+            this.btn_OpenListOfThings.UseVisualStyleBackColor = true;
+            this.btn_OpenListOfThings.Click += new System.EventHandler(this.btn_OpenListOfThings_Click);
             // 
             // DGV_Skills
             // 
@@ -537,8 +537,8 @@ namespace DnD_Hub
         #endregion
         private System.Windows.Forms.DataGridView DGV_SavingThrows;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox lb_Links;
+        private System.Windows.Forms.Button btn_OpenListOfThings;
         private System.Windows.Forms.DataGridView DGV_Skills;
         private System.Windows.Forms.DataGridView DGV_Actions;
         private System.Windows.Forms.Button btn_LoadProfile;
