@@ -6,8 +6,7 @@ namespace Smyers.Files
     {
         public string[] OpenListOfThings(string fileName)
         {
-            string[] files = Array.Empty<string>();
-            files = File.ReadAllLines(fileName);
+            var files = File.ReadAllLines(fileName);
 
             foreach (string file in files)
             {
@@ -18,7 +17,7 @@ namespace Smyers.Files
 
         public void OpenFileWithDefault(string fileName)
         {
-            Process fileopener = new Process();
+            Process fileopener = new();
             try
             {
                 fileopener.StartInfo.FileName = fileName;

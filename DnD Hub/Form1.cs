@@ -301,12 +301,29 @@ namespace DnD_Hub
 
         private void btn_OpenListOfThings_Click(object sender, EventArgs e)
         {
-            lb_Links.Items.Clear();
-            string[] files = _fileReader.OpenListOfThings();
-            foreach (string file in files)
+            string[] openedLinks = Array.Empty<string>();
+
+            using (OpenFileDialog openFileDialog = new())
             {
-                lb_Links.Items.Add(file);
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "text files (*.txt)|*.txt";
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    openedLinks = _fileReader.OpenListOfThings(openFileDialog.FileName);
+                }
             }
+
+            if (openedLinks.Length > 0)
+            {
+                lb_Links.Items.Clear();
+                foreach (string file in openedLinks)
+                {
+                    lb_Links.Items.Add(file);
+                }
+            }
+
         }
     }
 }
