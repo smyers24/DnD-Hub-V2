@@ -24,3 +24,4 @@ Change MODs to use abbreviated text (STR instead of Strength)
 
 Pictures of the project
 
+Formatted markdown readme
