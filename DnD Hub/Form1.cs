@@ -7,6 +7,8 @@ using System.Text.Json;
 using DnD.Rolls;
 using Smyers.Extensions;
 using DnD.Models.Models;
+using System.Linq;
+using DnD.Models.Enums;
 
 namespace DnD_Hub
 {
@@ -31,6 +33,15 @@ namespace DnD_Hub
         private int _abilitiesDvgRollCellIndex = 3;
 
         private Smyers.Files.ReadFiles _fileReader = new();
+
+        // Need to add regex to parse these 
+        private const string _wildcardCharacter = "#";
+
+        private readonly string _diceQuantityName = $"tb_d{_wildcardCharacter}_quantity";
+        private readonly string _diceModifierName = $"tb_d{_wildcardCharacter}_mod";
+        private readonly string _diceAdvName = $"rb_d{_wildcardCharacter}_adv";
+        private readonly string _diceDisName = $"rb_d{_wildcardCharacter}_dis";
+        private readonly string _panelName = $"panel_d{_wildcardCharacter}";
 
         public Form1()
         {
@@ -87,7 +98,10 @@ namespace DnD_Hub
 
         private void PostBindingProcessing()
         {
-            DGV_Abilities.Columns[nameof(Ability.AbilityType)].Visible = false;
+            if (DGV_Abilities.Columns[nameof(Ability.AbilityType)] is not null)
+            {
+                DGV_Abilities.Columns[nameof(Ability.AbilityType)].Visible = false;
+            }
         }
 
         private void RefreshDataGridViews()
@@ -324,6 +338,95 @@ namespace DnD_Hub
                 }
             }
 
+        }
+
+        private void btn_openMap_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openMap = new OpenFileDialog();
+            var path = openMap.ShowDialog();
+            // WIP
+        }
+
+        private void clickManualRoll(object sender, EventArgs e)
+        {
+            Button dieButton = sender as Button;
+            int dieValue = RollRegex.FindDieValue(dieButton.Name); //get die value from button name
+            var info = GenerateRollInformationFromUI(dieValue);
+            ManualRoll(info);
+        }
+
+        private RollInformation GenerateRollInformationFromUI(int dieValue)
+        {
+            var panelName = _panelName.Replace(_wildcardCharacter, dieValue.ToString());
+            var panel = this.Controls.Find(panelName, true).First();
+
+            var diceQuantityTextboxName = _diceQuantityName.Replace(_wildcardCharacter, dieValue.ToString());
+            var diceQuantityTextbox = panel.Controls.OfType<TextBox>().Where(tb => tb.Name == diceQuantityTextboxName).First();
+            
+            var valueExists = int.TryParse(diceQuantityTextbox.Text, out var diceQuantity);
+            if (!valueExists)
+            {
+                diceQuantity = 1;
+            }
+
+            var diceModifierTextboxName = _diceModifierName.Replace(_wildcardCharacter, dieValue.ToString());
+            var diceModifierTextbox = panel.Controls.OfType<TextBox>().Where(tb => tb.Name == diceModifierTextboxName).First();
+            int.TryParse(diceModifierTextbox.Text, out var diceModifier);
+
+            var vantageRadioButton = panel.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            var vantage = GetVantageFromRadioButton(vantageRadioButton, dieValue);
+
+            return new RollInformation
+            {
+                DieValue = dieValue,
+                Modifier = diceModifier,
+                NumberOfDice = diceQuantity,
+                Vantage = vantage,
+                IsPositive = true
+            };
+        }
+
+        private Vantage GetVantageFromRadioButton(RadioButton radioButton, int dieValue)
+        {
+            // TODO: re-organize this method 
+
+            var disName = _diceDisName.Replace(_wildcardCharacter, dieValue.ToString());
+            var advName = _diceAdvName.Replace(_wildcardCharacter, dieValue.ToString());
+
+            if (radioButton == null)
+            {
+                return Vantage.Flat;
+            }
+            else if (radioButton.Name == advName)
+            {
+                return Vantage.Advantage;
+            }
+            else if (radioButton.Name == disName)
+            {
+                return Vantage.Disadvantage;
+            }
+            else
+            {
+                return Vantage.Flat;
+            }
+        }
+
+        private void ManualRoll(RollInformation info)
+        {
+            var result = info.Vantage switch
+            {
+                Vantage.Flat => RollFunctions.RollCalc(info.NumberOfDice.Value, info.DieValue.Value, info.Modifier.Value),
+
+                Vantage.Disadvantage => Math.Min(RollFunctions.RollCalc(info.NumberOfDice.Value, info.DieValue.Value, info.Modifier.Value),
+                                                 RollFunctions.RollCalc(info.NumberOfDice.Value, info.DieValue.Value, info.Modifier.Value)),
+
+                Vantage.Advantage => Math.Max(RollFunctions.RollCalc(info.NumberOfDice.Value, info.DieValue.Value, info.Modifier.Value),
+                                              RollFunctions.RollCalc(info.NumberOfDice.Value, info.DieValue.Value, info.Modifier.Value)),
+
+                _ => RollFunctions.RollCalc(info.NumberOfDice.Value, info.DieValue.Value, info.Modifier.Value),
+            };
+
+            lbl_rollResult.Text = result.ToString();
         }
     }
 }

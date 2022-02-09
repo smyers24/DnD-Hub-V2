@@ -170,7 +170,8 @@ namespace DnD.Objects
                     {
                         AbilityType = AbilityType.Strength,
                         Value = 0
-                    }
+                    },
+                    Value = 12
                 },
                 new SavingThrow()
                 {
@@ -179,7 +180,8 @@ namespace DnD.Objects
                     {
                         AbilityType = AbilityType.Dexterity,
                         Value = 0
-                    }
+                    },
+                    Value = 12
                 },
                 new SavingThrow()
                 {
@@ -188,7 +190,8 @@ namespace DnD.Objects
                     {
                         AbilityType = AbilityType.Constitution,
                         Value = 0
-                    }
+                    },
+                    Value = 12
                 },
                 new SavingThrow()
                 {
@@ -197,7 +200,8 @@ namespace DnD.Objects
                     {
                         AbilityType = AbilityType.Intelligence,
                         Value = 0
-                    }
+                    },
+                    Value = 12
                 },
                 new SavingThrow()
                 {
@@ -206,7 +210,8 @@ namespace DnD.Objects
                     {
                         AbilityType = AbilityType.Wisdom,
                         Value = 0
-                    }
+                    },
+                    Value = 12
                 },
                 new SavingThrow()
                 {
@@ -215,7 +220,8 @@ namespace DnD.Objects
                     {
                         AbilityType = AbilityType.Charisma,
                         Value = 0
-                    }
+                    },
+                    Value = 12
                 },
             };
 

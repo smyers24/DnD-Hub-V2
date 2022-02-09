@@ -11,5 +11,7 @@ namespace DnD.Objects
         public string Name { get; set; }
 
         public Modifier Modifier { get; set; }
+
+        public int Value { get; set; }  
     }
 }

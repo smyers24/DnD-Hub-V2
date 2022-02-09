@@ -9,23 +9,12 @@ namespace DnD.Rolls
 {
     public static class RollFunctions
     {       
-        public static int RollCalc(string qty, int dieValue, string modifier)
-        {
-            bool validRollQty = int.TryParse(qty, out int rollQty);
-            int rollQuantity = 1;
+        public static int RollCalc(int diceQuantity, int diceValue, int modifier)
+        {          
+            int result = Roll(diceQuantity, diceValue);
 
-            if (validRollQty)
-            {
-                rollQuantity = rollQty;
-            }
+            result += modifier;
 
-            int result = Roll(rollQuantity, dieValue);
-
-            if (!string.IsNullOrEmpty(qty))
-            {
-                int.TryParse(modifier, out int modValue);
-                result += modValue;
-            }
             return result;
         }
 
