@@ -1,6 +1,6 @@
 # DnD-Hub-V2
  
-Current Status:
+##  Current Status: 
 
 Save entire profile to JSON file
 
@@ -12,16 +12,12 @@ Actions, Saving Throws, Skills, and Abilities boxes to automatically roll
 
 Roll string box
 
-Need to add:
-
 Roll box for ad-hoc rolls
+
+##  Need to add: 
 
 Make general rolls more reliable
 
-Streamline UI
-
 Change MODs to use abbreviated text (STR instead of Strength)
 
-Pictures of the project
-
-Formatted markdown readme
+(More) Pictures of the project
