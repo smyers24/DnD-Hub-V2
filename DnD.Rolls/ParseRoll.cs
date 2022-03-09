@@ -21,7 +21,7 @@ namespace DnD.Rolls
         public static RollInformation GetRollInformation(string roll)
         {
             var rollInfo = new RollInformation();
-            (var isPositive, var rollNoSign) = CheckForSign(roll);
+            (var isPositive, var rollNoSign) = IsRollPositive(roll);
             rollInfo.IsPositive = isPositive;
 
             var diceInfo = rollNoSign.Split('d');          
@@ -49,7 +49,7 @@ namespace DnD.Rolls
             return RollFunctions.GetRollResults(parsedRoll);
         }
 
-        private static (bool, string) CheckForSign(string roll)
+        public static (bool, string) IsRollPositive(string roll)
         {
             if (roll.Contains('-'))
             {
